@@ -1,0 +1,1 @@
+https://www.kaggle.com/datasets/foenix/slc-crime?resource=download --> base de dados de crimes em Salt Lake City, Utah, EUA
