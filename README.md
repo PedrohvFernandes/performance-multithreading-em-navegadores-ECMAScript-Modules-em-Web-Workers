@@ -16,7 +16,7 @@ Utilizamos dois padrões de arquitetura MVC e a camada services do lado do clien
 
 - Model-> é aonde fica toda a informação, no caso do projeto é o arquivo que contem os dados em assets.
 - View-> nesse caso manipula o HTML, colocando e manipulando as info para a interface. Somente ele vai importar modulo, somente ele vai ler elemento etc. Caso fosse no back-end a view seria a propria UI(react, html etc). 
-- Controller-> Meio de campo, que liga a interface com o service. Recebendo a req e Retornando os dados tratados do service para a interface. O pai de todos, o orquestrador. Por exemplo: Recebe uma msg do worker, terminou de processar e precisa enviar pra view, o worker não sabe quem é a view, mas o controller sabe, então por isso que ele fica no meio, passando objeto pra um lado e pro outro. Ele faz a regra de validação e não a de negocio.
+- Controller-> Meio de campo, que liga a interface com o service. Recebendo a req e Retornando os dados tratados do service para a interface. O pai de todos, o orquestrador. Por exemplo: Recebe uma msg do worker, terminou de processar e precisa enviar pra view, o worker não sabe quem é a view, mas o controller sabe, então por isso que ele fica no meio, passando objeto pra um lado e pro outro. Ele faz a regra de validação e não a de negocio. De para quem
 - Service-> é a onde fica toda a regra de negocio.
 - Worker-> tudo que for executar em segundo plano, usar muita CPU e travar a tela.
 - Index-> o index nada mais o cara que vai cuidar de tudo, ele é quem vai centralizar os demais e ser chamado pelo HTML.

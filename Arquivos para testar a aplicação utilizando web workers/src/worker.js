@@ -16,15 +16,17 @@ onmessage = ({ data }) => {
     file,
     query,
     // Toda vez que encontrar uma nova pesquisa, mandar uma mensagem que bate na nossa controller
+    // Passamos todos os args da service para a controller
     onOcurrenceUpdate: args => {
       postMessage({ eventType: 'ocurrenceUpdate', ...args })
     },
     // Toda vez que tiver um progresso, mandar uma mensagem que bate na nossa controller
+    // Passamos somente o total da service para a controller
     onProgress: total => {
       // Quando conseguimos ler pelo menos 10% do arquivo, a gente emite o evento progress etc
       postMessage({ eventType: 'progress', total })
     }
   })
 
-  console.log('Ola sou o worker, mensagem recebida do worker thread: ', data)
+  // console.log('Ola sou o worker, mensagem recebida do worker thread: ', data)
 }

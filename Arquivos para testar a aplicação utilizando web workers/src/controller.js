@@ -2,24 +2,27 @@ export class Controller {
   // Atributos/metodos privados da classe, tipo o private do TS ou do proprio Java, delegando que esse atributo/metodo só pode ser acessado dentro da classe
   #worker
   #view
+  #service
   #events = {
-    alive: () => {
-      console.log('alive')
-    },
+    alive: () => {},
     progress: ({ total }) => {
       this.#view.updateProgress(total)
-      console.log('progress')
+      // console.log('progress')
     },
-    ocurrenceUpdate: data => {
-      console.log('ocurrenceUpdate'), data
+    ocurrenceUpdate: ({ found, linesLength, elapsed }) => {
+      const [[key, value]] = Object.entries(found)
+      this.#view.updateDebugLog(
+        `Found ${key}: ${value} ocurrencies - over ${linesLength} lines - time: ${elapsed}`
+      )
     }
   }
   // Padrão utilizado - recebendo as dependências por parâmetro na controller
-  constructor({ worker, view }) {
+  constructor({ worker, view, service }) {
     // this.#worker = worker
     // 8º
     this.#worker = this.#configureWorker(worker)
     this.#view = view
+    this.#service = service
   }
 
   // Sempre um metodo static init para iniciar a controller, recebendo as dependências
@@ -109,6 +112,18 @@ export class Controller {
       this.#worker.postMessage({ file, query })
       return
     }
+    // 11º caso não esteja marcado, fazemos a busca no main thread
+    // Aqui no caso é a mesma coisa que o worker.js só que no main thread. obs: vai travar a tela
     console.log('executing on main thread!')
+    this.#service.processFile({
+      file,
+      query,
+      onOcurrenceUpdate: (...args) => {
+        this.#events.ocurrenceUpdate(...args)
+      },
+      onProgress: total => {
+        this.#events.progress({ total })
+      }
+    })
   }
 }

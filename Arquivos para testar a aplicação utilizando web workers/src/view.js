@@ -62,6 +62,7 @@ export class View {
   // 7º Atualizando o progresso
   updateProgress(value) {
     this.#progress.value = value
+    this.#progress.style = `--progress: ${value}`
   }
 
   // 8º verifica se o checked está marcado

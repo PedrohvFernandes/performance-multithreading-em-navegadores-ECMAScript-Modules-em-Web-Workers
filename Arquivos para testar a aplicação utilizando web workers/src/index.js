@@ -11,4 +11,5 @@ const worker = new Worker('./src/worker.js', {
 // worker.postMessage('Hello from worker thread')
 
 // Aqui eu passo as deps do controller, inicializo a controller e retorno ela
-Controller.init({ worker, view: new View() })
+// So passamos o service para executar na main thread, ja na worker thread, passamos no worker.js
+Controller.init({ worker, view: new View(), service: new Service() })

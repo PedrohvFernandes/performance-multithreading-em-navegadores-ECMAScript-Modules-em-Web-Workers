@@ -53,37 +53,6 @@
         margin: 1rem;
       }
 
-      input[type='checkbox'] {
-        margin: 0;
-        padding: 0;
-        border: none;
-        border-radius: 0;
-        outline: none;
-        font-size: larger;
-      }
-
-      input[type='checkbox']:hover {
-        background-color: crimson;
-        color: white;
-        transition: all 0.5s ease;
-      }
-
-      input[type='checkbox']:checked {
-        background-color: crimson;
-        color: white;
-        transition: all 0.5s ease;
-      }
-
-      input[type='checkbox']:checked:hover {
-        background-color: white;
-        color: crimson;
-        transition: all 0.5s ease;
-      }
-
-      progress {
-        transition: all 0.5s ease;
-      }
-
       #submit,
       #toClean {
         background-color: crimson;
@@ -125,7 +94,7 @@
         font-size: larger;
       }
 
-      #debub {
+      #debug {
         margin: 1rem;
         padding: 1rem;
         border: 1px solid crimson;
@@ -137,19 +106,22 @@
       #progress {
         width: 100%;
         height: 1rem;
-        border: 1px solid crimson;
+        border: 2px solid crimson;
         border-radius: 1rem;
         outline: none;
         font-size: larger;
+        --progress: 0;
       }
 
       #progress::-webkit-progress-bar {
-        background-color: crimson;
+        background-color: white;
         border-radius: 1rem;
       }
 
       #progress::-webkit-progress-value {
-        background-color: white;
+        width: calc(var(--progress) * 1%);
+        background-color: hsl(calc(var(--progress) * 1.2), 80%, 50%);
+        transition: all 0.2s ease;
         border-radius: 1rem;
       }
 
