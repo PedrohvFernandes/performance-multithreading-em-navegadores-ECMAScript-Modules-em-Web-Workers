@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arquivos para testar a aplicação utilizando web workers</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        background-color: #000;
+        color: white;
+      }
+
+      label {
+        margin: 0.5rem;
+        text-transform: uppercase;
+        font-size: larger;
+      }
+
+      input {
+        margin: 1rem;
+        padding: 1rem;
+        border: 1px solid crimson;
+        border-radius: 1rem;
+        outline: none;
+        font-size: larger;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 1rem;
+      }
+
+      .form-group-buttons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin: 1rem;
+      }
+
+      .form-group-checkbox {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin: 1rem;
+      }
+
+      input[type='checkbox'] {
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        outline: none;
+        font-size: larger;
+      }
+
+      input[type='checkbox']:hover {
+        background-color: crimson;
+        color: white;
+        transition: all 0.5s ease;
+      }
+
+      input[type='checkbox']:checked {
+        background-color: crimson;
+        color: white;
+        transition: all 0.5s ease;
+      }
+
+      input[type='checkbox']:checked:hover {
+        background-color: white;
+        color: crimson;
+        transition: all 0.5s ease;
+      }
+
+      progress {
+        transition: all 0.5s ease;
+      }
+
+      #submit,
+      #toClean {
+        background-color: crimson;
+        color: white;
+        border: none;
+        border-radius: 1rem;
+        padding: 1rem;
+        margin: 1rem;
+        font-size: larger;
+        cursor: pointer;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      #submit:hover,
+      #toClean:hover {
+        background-color: white;
+        color: crimson;
+        transition: all 0.5s ease;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(0%, 50%) translateY(0);
+        }
+        50% {
+          transform: translate(0%, 0%) translateY(-1px);
+        }
+        100% {
+          transform: translate(0%, 50%) translateY(0);
+        }
+      }
+
+      #file-size {
+        margin: 1rem;
+        padding: 1rem;
+        border: 1px solid crimson;
+        border-radius: 1rem;
+        outline: none;
+        font-size: larger;
+      }
+
+      #debub {
+        margin: 1rem;
+        padding: 1rem;
+        border: 1px solid crimson;
+        border-radius: 1rem;
+        outline: none;
+        font-size: larger;
+      }
+
+      #progress {
+        width: 100%;
+        height: 1rem;
+        border: 1px solid crimson;
+        border-radius: 1rem;
+        outline: none;
+        font-size: larger;
+      }
+
+      #progress::-webkit-progress-bar {
+        background-color: crimson;
+        border-radius: 1rem;
+      }
+
+      #progress::-webkit-progress-value {
+        background-color: white;
+        border-radius: 1rem;
+      }
+
+      #progress::-moz-progress-bar {
+        background-color: white;
+        border-radius: 1rem;
+      }
+
+      #progress::-ms-fill {
+        background-color: white;
+        border-radius: 1rem;
+      }
+
+      #progress::-o-progress-bar {
+        background-color: white;
+        border-radius: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form">
+      <div class="form-group">
+        <label for="description">description</label>
+        <input
+          type="text"
+          name="description"
+          id="description"
+          placeholder="Digite o nome da descrição"
+        />
+      </div>
+      <div class="form-group">
+        <label for="csv-file">CSV FILE</label>
+        <input
+          type="file"
+          accept=".csv"
+          name="csv-file"
+          id="csv-file"
+          placeholder="Insira o arquivo que deseja processar os dados"
+        />
+      </div>
+      <div class="form-group-checkbox">
+        <input
+          type="checkbox"
+          accept=".csv"
+          name="worker"
+          id="worker"
+          checked
+        />
+        <label for="worker">Should use worker threads ?</label>
+      </div>
+      <div class="form-group-buttons">
+        <input type="submit" id="submit" value="Search" />
+        <input type="reset" id="toClean" value="Reset" />
+      </div>
+      <div class="form-group">
+        <output id="file-size"> </output>
+      </div>
+      <div class="form-group">
+        <label for="progress">Processing progress:</label>
+        <progress id="progress" name="progress" value="0" max="100">0</progress>
+      </div>
+      <div class="form-group">
+        <output id="debug"></output>
+      </div>
+    </form>
+    <!-- O index que vai se virar, dessa forma poderiamos ate reaproveitar o codigo feito no node.js
+    https://medium.com/engenharia-arquivei/arquitetura-isomórfica-afc7bc957a2b
+    https://br.atsit.in/archives/13253
+    -->
+    <script src="./src/index.js" type="module"></script>
+  </body>
+</html>
