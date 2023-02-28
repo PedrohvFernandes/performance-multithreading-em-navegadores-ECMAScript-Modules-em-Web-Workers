@@ -57,7 +57,7 @@ export class Service {
   // Aqui a gente trata(tira espaços em brancos e linhas vazias) e conta as linhas que tem no arquivo. E transforma o arquivo em um objeto JSON, que posteriormente vai ser usado para fazer a pesquisa
   #csvToJson({ linesLength, progressFn }) {
     let columns = []
-    // Essa api é para ler arquivos/dados sobre demanda no navegador, nesse caso linha por linha, gerando um objeto enorme e posteriormente enfileirandos os objetos contidos dentro desse objeto
+    // Essa api é para ler arquivos/dados sob demanda no navegador, nesse caso linha por linha, gerando um objeto enorme e posteriormente enfileirandos os objetos contidos dentro desse objeto
     return new TransformStream({
       transform(chunk, controller) {
         // Como o progressFn retorna uma função que tem uma parametro, então passamos o tamanho do chunk para ela e a cada chunk que ele ler, ele vai somando o tamanho do chunk com o total de bytes que ele ja leu e vai tendo o progresso

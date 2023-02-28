@@ -108,7 +108,7 @@ export class Controller {
     // 7º caso o worker esteja marcado, fazemos a busca no worker
     if (this.#view.isWorkerChecked()) {
       console.log('executing on worker thread!')
-      // 9º Aqui eu mando a mensagem pro worker. Passando somente o file e a description. Mas não é o file em si e sim a referencia pra a gente poder ler esse arquivo sobre demanda
+      // 9º Aqui eu mando a mensagem pro worker. Passando somente o file e a description. Mas não é o file em si e sim a referencia pra a gente poder ler esse arquivo sob demanda
       this.#worker.postMessage({ file, query })
       return
     }
