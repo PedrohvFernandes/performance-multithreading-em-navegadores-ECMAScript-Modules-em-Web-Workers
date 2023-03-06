@@ -10,6 +10,8 @@ Um web worker, conforme definido pelo World Wide Web Consortium e o Web Hypertex
 
 - [Web Workers API](https://developer.mozilla.org/pt-BR/docs/Web/API/Web_Workers_API)
 
+As Web Workers não rodam no DOM, o web worker não tem acesso ao document. É tipo multithread de mobile, quem atualiza a tela geralmente é a thread principal
+
 ## Como que o projeto foi feito
 
 Utilizamos dois padrões de arquitetura MVC e a camada services do lado do cliente. View, Controller e Service para organizar o projeto, separando as responsabilidades.
